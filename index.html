@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+  <title>GART</title>
+
+  <meta charset="UTF-8" />
+  <meta name="description" content="description" />
+  <meta name="keywords" content="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+
+
+  <link rel="shortcut icon" href="resources/favicon.ico" type="image/x-icon" />
+
+  <link rel="preload" href="fonts/GothamPro-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/GothamPro-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/GothamPro-Light.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    .popup {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/main.min.css" />
+
+  <link rel="stylesheet" href="resources/swiper/swiper-bundle.min.css" media="(max-width: 819.98px)" />
+  <style>
+    :root {
+      --swiper-navigation-size: 0px;
+    }
+    .swiper-slide {
+      /* fix после подключения swiper */
+      height: auto;
+      transition: opacity 0.5s ease;
+    }
+    .swiper-button-prev,
+    .swiper-button-next,
+    .swiper-pagination-bullet {
+      display: none;
+    }
+    @media (max-width: 819.98px) {
+      .swiper-container {
+        padding: 55px 0 0 0;
+      }
+      .swiper-wrapper {
+        z-index: 11;
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        top: 10px;
+        display: block;
+        width: 35px;
+        height: 35px;
+        background-color: hsl(217, 25%, 29%);
+        border-radius: 50%;
+        transition: opacity 0.5s ease 0s, background-color 0.2s;
+      }
+      .swiper-button-prev::before,
+      .swiper-button-next::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 13px;
+        content: '';
+      }
+      .swiper-button-prev:focus,
+      .swiper-button-next:focus,
+      .swiper-button-prev:active,
+      .swiper-button-next:active {
+        background-color: hsl(217, 25%, 20%);
+      }
+      .swiper-button-prev {
+        left: 18%;
+      }
+      .swiper-button-prev::before {
+        background: url('img/icons/sprite.svg#stage-angle-white') center center / cover no-repeat;
+        transform: translate(-60%, -50%) rotate(180deg);
+      }
+      .swiper-button-next {
+        right: 18%;
+      }
+      .swiper-button-next::before {
+        background: url('img/icons/sprite.svg#stage-angle-white') center center / cover no-repeat;
+        transform: translate(-40%, -50%);
+      }
+      .swiper-button-disabled {
+        opacity: 0.1 !important;
+      }
+      .swiper-pagination {
+        top: 16px;
+      }
+      .swiper-pagination-bullet {
+        display: inline-block;
+        width: 10px;
+        height: 4px;
+        content: '';
+        background-color: #37455c;
+        border-radius: 8px;
+        transition: width 0.5s ease 0s;
+      }
+      .swiper-pagination-bullet-active {
+        width: 48px;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .swiper-slide-prev,
+      .swiper-slide-next {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+
+
+  <body>
+    <svg style="display: none">
+  <symbol viewBox="0 0 244 96" id="timing-consult-btn">
+    <path d="M8.54 0a8 8 0 00-8 8v13.752a8 8 0 003.98 6.917L117.977 94.62a8 8 0 008.041 0L239.481 28.67a8.001 8.001 0 003.979-6.917V8a8 8 0 00-8-8H8.54z" />
+  </symbol>
+  <symbol viewBox="0 0 156 178" id="popup-success-img">
+    <path d="M74 1.31a8 8 0 018 0l69.942 40.38a8 8 0 014 6.929v80.762a8 8 0 01-4 6.928L82 176.691a8 8 0 01-8 0L4.058 136.309a8 8 0 01-4-6.928V48.619a8 8 0 014-6.928L74 1.309z" />
+  </symbol>
+</svg>
+
+
+    <div class="wrapper">
+      <header class="header _lock-padding">
+  <div class="header__wrapper _header-normal _lock-padding">
+    <div class="header__logo _logo">
+      <img src="img/logo/logo.svg" alt="image" />
+    </div>
+    <div class="header__container _container">
+      <div class="header__inner">
+        <div class="header__social social">
+          <span>Напишите нам</span>
+          <ul class="social__list">
+            <li class="social__item">
+              <span class="social__item-decor social__item-decor--1"></span>
+              <a href="#" target="_blank" rel="noopener" class="social__link social__link--1">Viber</a>
+            </li>
+            <li class="social__item">
+              <span class="social__item-decor social__item-decor--2"></span>
+              <a href="#" target="_blank" rel="noopener" class="social__link social__link--2">Whatsapp</a>
+            </li>
+            <li class="social__item">
+              <span class="social__item-decor social__item-decor--3"></span>
+              <a href="#" target="_blank" rel="noopener" class="social__link social__link--3">Telegram</a>
+            </li>
+          </ul>
+        </div>
+        <a href="tel:+73952799343" class="header__phone">+7 3952 <span>799-343</span></a>
+      </div>
+    </div>
+    <div class="header__container-mobile menu">
+      <div class="menu__icon-request-bg">
+        <button class="menu__icon-request popup-btn" type="button" data-path="popup" aria-label="Рассчитать стоимость бурения"></button>
+      </div>
+      <div class="menu__icon-menu-bg">
+        <button class="menu__icon-menu" type="button" aria-label="Меню"></button>
+      </div>
+      <div class="menu__body">
+        <nav class="menu__nav">
+          <ul class="menu__list">
+            <li><a href="#drilling" class="menu__link _active">Бурение скважин</a></li>
+            <li><a href="#experience" class="menu__link">Опыт</a></li>
+            <li><a href="#difference" class="menu__link">Особенности</a></li>
+            <li><a href="#machines" class="menu__link">Техника</a></li>
+            <li><a href="#docs" class="menu__link">Гарантии</a></li>
+            <li><a href="#result" class="menu__link">Результат</a></li>
+            <li><a href="#prices" class="menu__link">Цены</a></li>
+            <li><a href="#map" class="menu__link">Карта глубин</a></li>
+            <li><a href="#timing" class="menu__link">Сроки</a></li>
+            <li><a href="#process" class="menu__link">Порядок работы</a></li>
+            <li><a href="#contacts" class="menu__link">Контакты</a></li>
+          </ul>
+        </nav>
+        <div class="header__inner-mobile">
+          <a href="tel:+73952799343" class="header__phone header__phone--menu">+7 3952 <span>799-343</span></a>
+          <div class="header__social-mobile social social--menu">
+            <span>Напишите нам</span>
+            <ul class="social__list social__list--menu">
+              <li class="social__item social__item--menu">
+                <span class="social__item-decor social__item-decor--1"></span>
+                <a href="#" target="_blank" rel="noopener" class="social__link social__link--1">Viber</a>
+              </li>
+              <li class="social__item social__item--menu">
+                <span class="social__item-decor social__item-decor--2"></span>
+                <a href="#" target="_blank" rel="noopener" class="social__link social__link--2">Whatsapp</a>
+              </li>
+              <li class="social__item social__item--menu">
+                <span class="social__item-decor social__item-decor--3"></span>
+                <a href="#" target="_blank" rel="noopener" class="social__link social__link--3">Telegram</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="header__buttons-mobile">
+          <div class="header__buttons-body-mobile">
+            <button type="button" data-path="popup" class="header__button-left header__button-left--menu popup-btn">
+              <span>Узнать глубину на участке</span>
+            </button>
+            <button type="button" data-path="popup" class="header__button-right header__button-right--menu popup-btn">
+              <span>Рассчитать стоимость бурения</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header__buttons _lock-padding">
+      <div class="header__buttons-body">
+        <button type="button" data-path="popup" class="header__button-left popup-btn">
+          <span>Узнать глубину на участке</span>
+        </button>
+        <button type="button" data-path="popup" class="header__button-right popup-btn">
+          <span>Рассчитать стоимость бурения</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="page">
+        <nav class="fixed-nav">
+  <ul class="fixed-nav__list">
+    <li class="fixed-nav__item _active"><a href="#drilling" class="fixed-nav__link">Бурение скважин</a></li>
+    <li class="fixed-nav__item"><a href="#experience" class="fixed-nav__link">Опыт</a></li>
+    <li class="fixed-nav__item"><a href="#difference" class="fixed-nav__link">Особенности</a></li>
+    <li class="fixed-nav__item"><a href="#machines" class="fixed-nav__link">Техника</a></li>
+    <li class="fixed-nav__item"><a href="#docs" class="fixed-nav__link">Гарантии</a></li>
+    <li class="fixed-nav__item"><a href="#result" class="fixed-nav__link">Результат</a></li>
+    <li class="fixed-nav__item"><a href="#prices" class="fixed-nav__link">Цены</a></li>
+    <li class="fixed-nav__item"><a href="#map" class="fixed-nav__link">Карта глубин</a></li>
+    <li class="fixed-nav__item"><a href="#timing" class="fixed-nav__link">Сроки</a></li>
+    <li class="fixed-nav__item"><a href="#process" class="fixed-nav__link">Порядок работы</a></li>
+    <li class="fixed-nav__item"><a href="#contacts" class="fixed-nav__link">Контакты</a></li>
+  </ul>
+</nav>
+
+<section id="drilling" class="drilling _anchor">
+  <div class="drilling__wrapper">
+    <div class="drilling__container _container">
+      <h1 class="drilling__title"><span>КАЧЕСТВЕННОЕ</span>бурение скважин на воду</h1>
+      <ul class="drilling__items">
+        <li>Бурим в Иркутске, Иркутской области</li>
+        <li>Цена за метр от 1600 ₽</li>
+      </ul>
+      <div class="drilling__form-container">
+        <div class="drilling__form">
+          <div class="drilling__form-image _img">
+            <picture>
+              <source type="image/webp" srcset="img/drilling/01.webp" />
+              <img src="img/drilling/01.png" alt="image" />
+            </picture>
+          </div>
+          <div class="drilling__form-inner">
+            <form id="drilling-phone" class="drilling__form-body form-phone">
+              <div class="form-phone__title form-phone__title--drilling">Замер глубины скважины</div>
+              <div class="form-phone__elements form-phone__elements--drilling">
+                <div class="form-phone__item form-phone__item--drilling">
+                  <input
+                    id="drillingFormPhone"
+                    class="form-phone__input input"
+                    aria-label="Номер телефона"
+                    type="tel"
+                    autocomplete="off"
+                    name="userphone"
+                    placeholder="Номер телефона"
+                    minlength="16"
+                    required
+                  />
+                </div>
+                <button class="form-phone__button form-phone__button--drilling btn" type="submit"><span>Узнать стоимость скважины</span></button>
+              </div>
+            </form>
+            <div class="drilling__form-desc">
+              <p>Узнайте ориентировочную глубину бурения и примерную стоимость для вашего участка.</p>
+              <p>Выезд специалиста — бесплатный.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience _anchor">
+  <div class="experience__wrapper-1">
+    <div class="experience__container _container">
+      <div class="experience__header">
+        <h2 id="experience" class="experience__title title"><span>Опыт работы</span>более 10 лет</h2>
+        <div class="experience__desc">
+          <div>Пробурили</div>
+          <ul>
+            <li>более 1586 скважин</li>
+            <li>более 56 200 метров</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="experience__history-scale history-scale">
+      <div class="history-scale__wrapper">
+        <div class="history-scale__container _container">
+          <div class="history-scale__range history-scale__range--1">
+            <div class="history-scale__range-3">Основание компании<span>2009</span></div>
+          </div>
+          <div class="history-scale__range history-scale__range--2">
+            <div class="history-scale__range-3">Парк из 5 машин<span>2012</span></div>
+          </div>
+          <div class="history-scale__range history-scale__range--3">
+            <div class="history-scale__range-3">Выход на область<span>2015</span></div>
+          </div>
+          <div class="history-scale__range history-scale__range--4">
+            <div class="history-scale__range-2">Пробурено 1000 скважин<span>2018</span></div>
+          </div>
+          <div class="history-scale__range history-scale__range--5">
+            <div class="history-scale__range-2">Пробурено 1500 скважин<span>2020</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="experience__wrapper-2">
+    <div class="experience__container _container">
+      <div class="experience__inner">
+        <div class="experience__items">
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--1"></div>
+              <div class="experience__item-box-heading experience__item-box-heading--1">Только в нашей компании в штате есть гидрогеолог</div>
+            </div>
+            <p class="experience__item-text">
+              Благодаря этому мы будем знать ещё до начала бурения, какие грунты на Вашем участке и на какой глубине находится вода. Знание состава грунта позволяет нам максимально
+              быстро и качественно проводить буровые работы, выбирать обсадные трубы и насос для скважины
+            </p>
+          </div>
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--2"></div>
+              <div class="experience__item-box-heading experience__item-box-heading--2">Бурим до 210 метров только компрессором</div>
+            </div>
+            <p class="experience__item-text">
+              Обычно скважины такой глубины бурят с помощью насоса и воды. Для этого выкапывается яма на вашем участке под воду и при этом процесс бурения замедляется. Благодаря
+              высокой квалификации нашего бурового мастера, вы экономите время и сохраняете вид участка — не приходится выкапывать яму и участок не заливает водой
+            </p>
+          </div>
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--3"></div>
+              <div class="experience__item-box-heading">Большой опыт бурения самых сложных скважин в Иркутской области — на Ольхоне</div>
+            </div>
+          </div>
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--4"></div>
+              <div class="experience__item-box-heading">Бурим любые породы</div>
+            </div>
+          </div>
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--5"></div>
+              <div class="experience__item-box-heading">Машинисты буровых установок 6 разряда</div>
+            </div>
+          </div>
+          <div class="experience__item">
+            <div class="experience__item-box">
+              <div class="experience__item-box-icon experience__item-box-icon--6"></div>
+              <div class="experience__item-box-heading">Бурим на глубину до 300 метров</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="difference _anchor">
+  <div class="difference__container _container">
+    <h2 id="difference" class="difference__title title"><span>После</span>НАШЕЙ РАБОТЫ</h2>
+    <div class="difference__subtitle subtitle">Ваш участок не будет выглядеть как после бомбежки, благодаря высокой квалификации машинистов буровых установок</div>
+    <div class="difference__row">
+      <div class="difference__column difference__column--one">
+        <div class="difference__column-box difference__column-box--one">
+          <div class="difference__column-heading">Низкоквалифицированные машинисты:</div>
+          <ul class="difference__column-list difference__column-list--one">
+            <li>При больших глубинах используют водяной насос</li>
+            <li>Не укрывают дом от брызг</li>
+          </ul>
+        </div>
+        <div class="difference__column_images">
+          <div class="difference__column-image difference__column-image--grayscale _img _lazyload">
+            <picture>
+              <source data-srcset="img/difference/02.webp" srcset="img/lazy/1x1.webp" type="image/webp" />
+              <img data-src="img/difference/02.jpg" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+          <div class="difference__column-image difference__column-image--grayscale _img _lazyload">
+            <picture>
+              <source data-srcset="img/difference/02.webp" srcset="img/lazy/1x1.webp" type="image/webp" />
+              <img data-src="img/difference/02.jpg" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <div class="difference__column difference__column--two">
+        <div class="difference__column-box difference__column-box--two">
+          <div class="difference__column-heading">Высококвалифицированные машинисты компании GART:</div>
+          <ul class="difference__column-list difference__column-list--two">
+            <li>Бурение только компрессором практически на любых глубинах — до 210 метров</li>
+            <li>Укрывают дом от брызг</li>
+          </ul>
+          <div class="difference__column-img-anim-1 _img _lazyload _anim-list-right">
+            <picture>
+              <source type="image/webp" data-srcset="img/difference/04.webp" srcset="img/lazy/1x1.webp" />
+              <img data-src="img/difference/04.png" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+        </div>
+        <div class="difference__column_images">
+          <div class="difference__column-image _img _lazyload">
+            <picture>
+              <source data-srcset="img/difference/02.webp" srcset="img/lazy/1x1.webp" type="image/webp" />
+              <img data-src="img/difference/02.jpg" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+          <div class="difference__column-image _img _lazyload">
+            <picture>
+              <source data-srcset="img/difference/02.webp" srcset="img/lazy/1x1.webp" type="image/webp" />
+              <img data-src="img/difference/02.jpg" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+        </div>
+        <div class="difference__column-img-anim-2 _img _lazyload _anim-list-left">
+          <picture>
+            <source type="image/webp" data-srcset="img/difference/07.webp" srcset="img/lazy/1x1.webp" />
+            <img data-src="img/difference/07.png" src="img/lazy/1x1.png" alt="image" />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="machines _anchor">
+  <div class="machines__wrapper">
+    <div class="machines__container _container">
+      <div class="machines__inner">
+        <h2 id="machines" class="machines__title title"><span>РАБОТАЕМ</span>без посредников</h2>
+        <div class="machines__subtitle subtitle">Собственная высокопроизводительная спецтехника</div>
+        <div class="machines__name-machine _scene">КАМАЗ УРБ 2А2</div>
+      </div>
+    </div>
+    <div class="machines__images">
+      <div class="machines__image-sketch _img _lazyload _scene">
+        <picture>
+          <source data-srcset="img/machines/01.webp" type="image/webp" srcset="img/lazy/1x1.webp" />
+          <img data-src="img/machines/01.png" src="img/lazy/1x1.png" alt="image" />
+        </picture>
+      </div>
+      <div class="machines__image-main _img _lazyload _scene">
+        <picture>
+          <source data-srcset="img/machines/02.webp" type="image/webp" srcset="img/lazy/1x1.webp" />
+          <img data-src="img/machines/02.png" src="img/lazy/1x1.png" alt="image" />
+        </picture>
+      </div>
+      <div class="machines__image-tree _img _lazyload _scene">
+        <picture>
+          <source data-srcset="img/machines/03.webp" type="image/webp" srcset="img/lazy/1x1.webp" />
+          <img data-src="img/machines/03.png" src="img/lazy/1x1.png" alt="image" />
+        </picture>
+      </div>
+    </div>
+    <div class="machines__image-main-copy-box">
+      <div class="machines__image-main-copy _img _lazyload">
+        <picture>
+          <source data-srcset="img/machines/02.webp" type="image/webp" srcset="img/lazy/1x1.webp" />
+          <img data-src="img/machines/02.png" src="img/lazy/1x1.png" alt="image" />
+        </picture>
+      </div>
+    </div>
+  </div>
+  <div class="machines__container _container">
+    <div class="machines__info">
+      <div class="machines__info-image _img _lazyload">
+        <picture>
+          <source type="image/webp" data-srcset="img/machines/04.webp" srcset="img/lazy/1x1.webp" />
+          <img data-src="img/machines/04.png" src="img/lazy/1x1.png" alt="image" />
+        </picture>
+        <span>Работаем на совесть</span>
+      </div>
+      <div class="machines__info-box">
+        <h3 class="machines__info-title">Сдаём не пробурённые метры, а качественную скважину — с гарантийными обязательствами</h3>
+        <div class="machines__info-subtitle">Продумываем каждую деталь наперёд, экономим ваши средства, заботимся о Вашем имуществе</div>
+      </div>
+    </div>
+    <div class="machines__garantee">
+      <div class="machines__garantee-item">
+        <div class="machines__garantee-icon"><span>5</span><sup>лет</sup></div>
+        <div class="machines__garantee-text">Гарантия от разрушения и заливания скважины</div>
+      </div>
+      <div class="machines__garantee-item">
+        <div class="machines__garantee-icon"><span>10</span><sup>лет</sup></div>
+        <div class="machines__garantee-text">Гарантия на трубы</div>
+      </div>
+    </div>
+    <div class="machines__steps steps">
+      <div class="steps__items">
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">
+              Подсказываем <span>правильное расположение скважины на участке</span>, исходя из построек уже возведённых и планируемых к возведению на участке
+            </div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Укрываем дом от брызг</div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Бурим до 210 метров только компрессором! Для этого необходима высокая квалификаия бурового мастера</div>
+            <div class="steps__desc">
+              Это позволяет не заливать участок водой и не выкапывать яму для воды, которую в дальнейшем устранять приходится владельцам участка, что достаточно проблематично
+            </div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading"><span>Исключяем</span> лишние затраты при подведении воды к дому</div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Используем только новые трубы от проверенных поставщиков</div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Делаем скважины, которые в дальнейшем, при необходимости, <span>можно будет добурить</span></div>
+            <div class="steps__desc">
+              В связи со сложившейся ситуацией в Иркутской области, возможно через 3–4 года снижение водоносного горизонта. В этом случае возникнет необходимость добурить скважину
+              до воды
+            </div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Всегда обсаживаем скважину <span>по всей длине</span></div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Соблюдаем технологию СНиП 4.02–91 и внутренние стандарты, которые строже официальных на 50%</div>
+          </div>
+        </div>
+        <div class="steps__container">
+          <div class="steps__item">
+            <div class="steps__heading">Сдаём скважину с чистой и прозрачной водой</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="docs _anchor">
+  <div class="docs__wrapper">
+    <div class="docs__container _container">
+      <div class="docs__inner">
+        <h2 id="docs" class="docs__title title"><span>Документы и</span>гарантии</h2>
+        <div class="docs__items">
+          <div class="docs__column">
+            <a href="#" class="docs__item">
+              <div class="docs__image _img _lazyload docs__image--1">
+                <picture>
+                  <source type="image/webp" data-srcset="img/docs/01.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-src="img/docs/01.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="docs__heading docs__heading--1">Заключаем договор с прописанными гарантиями</div>
+            </a>
+          </div>
+          <div class="docs__column">
+            <a href="#" class="docs__item">
+              <div class="docs__image _img _lazyload docs__image--2">
+                <picture>
+                  <source type="image/webp" data-srcset="img/docs/02.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-src="img/docs/02.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="docs__heading docs__heading--2">Делаем химический анализ воды</div>
+            </a>
+          </div>
+          <div class="docs__column">
+            <a href="#" class="docs__item docs__item--3">
+              <div class="docs__image _img _lazyload docs__image--3">
+                <picture>
+                  <source type="image/webp" data-srcset="img/docs/03.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-src="img/docs/03.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="docs__heading docs__heading--3">Выдаём паспорт скважины, где указываются её технические характеристики:</div>
+              <ul class="docs__list">
+                <li>Геологический разрез</li>
+                <li>Диаметр</li>
+                <li>Статический и динамический уровень воды в скважине</li>
+                <li>Дебит и так далее</li>
+              </ul>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="consultant _lock-padding">
+  <button class="consultant__button popup-btn" type="button" data-path="popup"><span>Online-консультант</span></button>
+</div>
+
+<section class="result _anchor">
+  <div class="result__wrapper">
+    <div class="result__container _container">
+      <div class="result__inner">
+        <h2 id="result" class="result__title title"><span>РЕЗУЛЬТАТ</span>НАШЕЙ РАБОТЫ</h2>
+        <div class="result__subtitle subtitle"><span>Качественная вода в вашем доме,</span> а не только качественная скважина</div>
+        <div class="result__body">
+          <div class="result__column result__column--list">
+            <ol class="result__list">
+              <li>Подбираем необходимое оборудование для обустройства скважины</li>
+              <li>Доставляем оборудование и материалы на объект монтажа</li>
+              <li>Выкапываем котлован для обустройства скважины с кессоном, либо копаем приямок для обустройства с адаптером и траншею по необходимости</li>
+              <li>Обрезаем обсадную трубу в нижней точке при монтаже кессона, при монтаже скважинного адаптера труба не обрезается</li>
+              <li>Производим монтаж кессона либо врезку в трубу скважинного адаптера</li>
+              <li>Монтируем насосное оборудование в скважине</li>
+              <li>В кессонной ёмкости устанавливаем оголовок, гидроаккумулятор, реле давления, автоматику, монтируем летний поливочный кран</li>
+              <li>Для прокладки водоподающей трубы роем траншею глубиной ниже точки промерзания почвы и не менее 1,6 метра</li>
+              <li>В дом заводим две магистрали, одна водоподающая, вторая для подводки электрокабеля от насоса, при необходимости устанавливается греющий кабель</li>
+              <li>Устанавливаем фильтры для очистки воды</li>
+              <li>Подключаем оборудование к электричеству, запускаем системы, тестируем</li>
+            </ol>
+          </div>
+          <div class="result__column result__column--images">
+            <div class="result__img-anim-1 _img _lazyload _anim-list-right">
+              <picture>
+                <source type="image/webp" data-srcset="img/result/02.webp" srcset="img/lazy/1x1.webp" />
+                <img data-src="img/result/02.png" src="img/lazy/1x1.png" alt="image" />
+              </picture>
+            </div>
+            <div class="result__img-main _img _lazyload">
+              <picture>
+                <source type="image/webp" data-srcset="img/result/01.webp" srcset="img/lazy/1x1.webp" />
+                <img data-src="img/result/01.png" src="img/lazy/1x1.png" alt="image" />
+              </picture>
+            </div>
+            <div class="result__img-anim-2 _img _lazyload _anim-list-left">
+              <picture>
+                <source type="image/webp" data-srcset="img/result/03.webp" srcset="img/lazy/1x1.webp" />
+                <img data-src="img/result/03.png" src="img/lazy/1x1.png" alt="image" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prices _anchor">
+  <div class="prices__container _container">
+    <h2 id="prices" class="prices__title title"><span>Честные цены</span>БУРЕНИЕ СКВАЖИН</h2>
+    <div class="prices__subtitle subtitle">
+      Стоимость бурения зависит от территориального расположения участка, глубины бурения, параметров обсадной трубы (материал, диаметр, общее количество), сложности геологического
+      разреза
+    </div>
+    <div class="prices__attention">
+      <div class="prices__attention-box">
+        <h3 class="prices__attention-box-title">Внимание! Цены на бурение, указанные ниже — временные</h3>
+        <p class="prices__attention-box-text">
+          Стоимость металла растёт ежедневно на десятки процентов, если вы хотите зафиксировать для себя самую низку цену — оставьте заявку прямо сейчас! Мы заранее закупим для вас
+          трубу по самой низкой цене
+        </p>
+      </div>
+      <button type="button" data-path="popup" class="prices__attention-button btn popup-btn"><span>Зафиксировать цену</span></button>
+    </div>
+    <div class="prices__options options">
+      <div class="options__heading">Варианты с одной обсадной трубой</div>
+      <div class="options__inner swiper-container _swiper-container-1">
+        <div class="options__observed-block _swiper-observed-block-1">Подложка по размеру картинок для IntersectionObserver. Скрытый блок</div>
+        <div class="options__row swiper-wrapper">
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/01.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/01.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">1600 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">Только буровые работы — труба Ваша</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-excluded">
+                <li>Нет гарантии на трубы</li>
+                <li>Возможно обрушение скважины, если вовремя не смонтировать трубу</li>
+              </ul>
+            </div>
+          </div>
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/02.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/02.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">2200 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">Пластиковая труба</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-excluded">
+                <li>Просаживается со временем</li>
+                <li>Сдавливается грунтом</li>
+                <li>Гарантия — 1 год</li>
+                <li>Не во всех районах применение данной технологии возможно</li>
+                <li>Насос для подъема воды подходит только на 3 дюйма</li>
+              </ul>
+            </div>
+          </div>
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/03.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/03.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">2500 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">Металлическая труба — D127</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-included">
+                <li>Гарнатия на скважину — 5 лет</li>
+                <li>Гарантия на трубы — 10 лет</li>
+                <li>Срок службы — 15 лет</li>
+                <li>Ремонтопригодность</li>
+                <li>Объем добычи воды до 6 м<sup>3</sup>/ч</li>
+                <li>Подходят насосы на 3 и 4 дюйма</li>
+              </ul>
+              <ul class="options__list-excluded">
+                <li>Вода при контакте с металлом незначительно окисляется</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <aside class="options__benefits aside-benefits" data-da=".options, 1199.98, 4">
+          <div class="aside-benefits__items">
+            <div class="aside-benefits__item"><span>Без предоплат</span></div>
+            <div class="aside-benefits__item"><span>Оплата по фактической глубине</span></div>
+            <div class="aside-benefits__item"><span>Никаких скрытых платежей</span></div>
+          </div>
+          <div class="aside-benefits__box">
+            <div class="aside-benefits__box-question">Не знаете какой тип скважины вам подходит?</div>
+            <button type="button" data-path="popup" class="aside-benefits__box-button btn popup-btn"><span>Узнать подробнее</span></button>
+          </div>
+        </aside>
+      </div>
+      <div class="options__heading options__heading--2">Варианты с двумя обсадными трубами</div>
+      <div class="options__inner swiper-container _swiper-container-2">
+        <div class="options__observed-block _swiper-observed-block-2">Подложка по размеру картинок для IntersectionObserver. Скрытый блок</div>
+        <div class="options__row swiper-wrapper">
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/04.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/04.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">2300 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">Норма — металл + пластик D = 159 / 125</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-included">
+                <li>Срок службы — 50 лет</li>
+                <li>Используется для получения питьевой воды</li>
+                <li>Гарантия — 5 лет</li>
+                <li>Ремонтопригодность</li>
+                <li>Объем добычи воды до 6 м<sup>3</sup>/ч</li>
+                <li>Возможность получить воду без ожелезнения</li>
+                <li>Обсадная труба из пищевого пластика с толщиной стенки 8,5 мм</li>
+              </ul>
+              <ul class="options__list-excluded">
+                <li>Не во всех районах применение данной технологии возможно</li>
+                <li>Насос для подъема воды подходит только на 3 дюйма</li>
+              </ul>
+            </div>
+          </div>
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/05.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/05.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">2700 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">Норма — металл + металл D = 159 / 127</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-included">
+                <li>Гарнатия на скважину — 5 лет</li>
+                <li>Гарантия на трубы — 10 лет</li>
+                <li>Срок службы — 25 лет</li>
+                <li>Ремонтопригодность</li>
+                <li>Объем добычи воды до 6 м<sup>3</sup>/ч</li>
+                <li>Подходят насосы на 3 и 4 дюйма</li>
+              </ul>
+              <ul class="options__list-excluded">
+                <li>Стоимость выше из-за использования большего количества труб различного диаметра</li>
+              </ul>
+            </div>
+          </div>
+          <div class="options__column swiper-slide">
+            <a href="#" class="options__box">
+              <div class="options__image _img _lazyload">
+                <picture>
+                  <source type="image/webp" data-wsrcset="img/prices/05.webp" srcset="img/lazy/1x1.webp" />
+                  <img data-wsrc="img/prices/05.png" src="img/lazy/1x1.png" alt="image" />
+                </picture>
+              </div>
+              <div class="options__header">
+                <div class="options__header-heading">3000 ₽ <span>за 1 метр</span></div>
+                <div class="options__header-desc">СТАНДАРТ «СНИП» <span>металл + металл</span> D = 159 / 133</div>
+              </div>
+            </a>
+            <div class="options__list-container">
+              <ul class="options__list-included">
+                <li>Гарнатия на скважину — 5 лет</li>
+                <li>Гарантия на трубы — 10 лет</li>
+                <li>Срок службы — 50 лет</li>
+                <li>Ремонтопригодность</li>
+                <li>Объем добычи воды до 6 м<sup>3</sup>/ч. Подходят насосы на 3 и 4 дюйма</li>
+              </ul>
+              <ul class="options__list-excluded">
+                <li>Вода при контакте с металлом незначительно окисляется</li>
+              </ul>
+              <div class="options__best-choice"><span>Лучшее решение</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <aside class="options__payment aside-payment" data-da=".options, 1199.98, 5">
+          <div class="aside-payment__image _img _lazyload">
+            <picture>
+              <source type="image/webp" data-srcset="img/prices/07.webp" srcset="img/lazy/1x1.webp" />
+              <img data-src="img/prices/07.png" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+          <div class="aside-payment__heading">Нет всей суммы сразу?</div>
+          <div class="aside-payment__no-credit">
+            <div class="aside-payment__no-credit-text"><span>Внутренняя беспроцентная рассрочка до 6 месяцев</span></div>
+          </div>
+          <div class="aside-payment__credit">
+            <div class="aside-payment__credit-text-1"><span>Кредит до 24 месяцев от Тинькофф банка и Совкомбанка</span></div>
+            <div class="aside-payment__credit-text-2">Рассмотрение заявки от 15 минут до 1 часа</div>
+            <ul class="aside-payment__logos">
+              <li class="aside-payment__logo-sovkom _logo _lazyload">
+                <img data-src="img/prices/logo-sovkombank.svg" src="img/lazy/1x1.png" alt="image" />
+              </li>
+              <li class="aside-payment__logo-tinkoff _logo _lazyload">
+                <img data-src="img/prices/logo-tinkoff.svg" src="img/lazy/1x1.png" alt="image" />
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map _anchor">
+  <div class="map__wrapper">
+    <div class="map__container _container">
+      <div class="map__header">
+        <h2 id="map" class="map__title title"><span>Карта</span>Глубин</h2>
+        <div class="map__subtitle">Иркутска и Иркутской области</div>
+      </div>
+      <div class="map__leaflet-container maps">
+        <div id="map-main" class="maps__map maps__map--main">
+          <div class="maps__preloader-image _main-preloader-img _img _lazyload">
+            <span class="maps__text maps__text--main">Нажмите на карту для взаимодействия</span>
+            <picture>
+              <source type="image/webp" data-srcset="img/map-main/pl.webp" srcset="img/lazy/1x1.webp" />
+              <img data-src="img/map-main/pl.jpg" src="img/lazy/1x1.png" alt="image" />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <div class="map__footer">
+        <form id="map-search" class="map__form-search form-search">
+          <div class="form-search__title">Поиск</div>
+          <div class="form-search__item">
+            <input
+              id="mapFormAddress"
+              class="form-search__input input"
+              aria-label="Адрес"
+              type="text"
+              maxlength="250"
+              autocomplete="off"
+              name="searchaddress"
+              placeholder="Адрес"
+            />
+          </div>
+        </form>
+        <form id="map-phone" class="map__form-phone form-phone">
+          <div class="form-phone__title form-phone__title--map">Не нашли свой адрес на карте? Закажите бесплатную консультацию</div>
+          <div class="form-phone__elements form-phone__elements--map">
+            <div class="form-phone__item form-phone__item--map">
+              <input
+                id="mapFormPhone"
+                class="form-phone__input input"
+                aria-label="Номер телефона"
+                type="tel"
+                autocomplete="off"
+                name="userphone"
+                placeholder="Номер телефона"
+                minlength="16"
+                required
+              />
+            </div>
+            <button class="form-phone__button form-phone__button--map btn" type="submit"><span>Узнать глубину скважины</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timing _anchor">
+  <div class="timing__wrapper">
+    <div class="timing__container _container">
+      <div class="timing__inner">
+        <h2 id="timing" class="timing__title title"><span>Бурим</span>в кратчайшие сроки</h2>
+        <div class="timing__row">
+          <div class="timing__column timing__column--1">
+            <div class="timing__item-icon timing__item-icon--1">
+              <div class="timing__item-box">
+                <div class="timing__item-box-figure"><span></span></div>
+              </div>
+            </div>
+            <div class="timing__item-heading">Только в нашей компании в штате гидрогеолог</div>
+            <div class="timing__item-desc">До начала бурения знаем состав грунта, благодаря этому выполняем все работы значительно быстрее</div>
+          </div>
+
+          <div class="timing__column timing__column--2">
+            <div class="timing__item-icon timing__item-icon--2">
+              <div class="timing__item-box timing__item-box--mirror">
+                <div class="timing__item-box-figure"><span></span></div>
+              </div>
+            </div>
+            <div class="timing__item-heading-up">Высокопроизво- дительные установки УРБ 2А2 на базе Камаза</div>
+          </div>
+
+          <div class="timing__column timing__column--3">
+            <div class="timing__item-icon timing__item-icon--3">
+              <div class="timing__item-box">
+                <div class="timing__item-box-figure"><span></span></div>
+              </div>
+            </div>
+            <div class="timing__item-heading">Бурим до 210 метров только компрессором</div>
+            <div class="timing__item-desc">
+              При бурении только компрессором на промывку скважины уходит до 2-х часов. Если бурить насосом, на промывку скважины уходит до 2-х дней! Чтобы бурить только с помощью
+              компрессора на больших глубинах, необходима высокая квалификация мастеров буровых установок
+            </div>
+          </div>
+
+          <div class="timing__column timing__column--4">
+            <div class="timing__item-icon timing__item-icon--4">
+              <div class="timing__item-box timing__item-box--mirror">
+                <div class="timing__item-box-figure"><span></span></div>
+              </div>
+            </div>
+            <div class="timing__item-heading-up">Умеем бурить даже сложные породы грунта в короткие сроки</div>
+          </div>
+
+          <div class="timing__column timing__column--5">
+            <div class="timing__item-icon timing__item-icon--5">
+              <div class="timing__item-box">
+                <div class="timing__item-box-figure"><span></span></div>
+              </div>
+            </div>
+            <div class="timing__item-heading">Все мастера на объектах живут в собственной технике</div>
+            <div class="timing__item-desc">Это значительно ускоряет процесс бурения</div>
+          </div>
+
+          <div class="timing__column timing__column--6">
+            <div class="timing__item-box timing__item-box--last">
+              <div class="timing__item-box-figure timing__item-box-figure--last"><span></span></div>
+              <div class="timing__item-heading-last"><span>До 80 метров за день</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="timing__box">
+          <div class="timing__box-inner">
+            <div class="timing__box-image _img _lazyload">
+              <picture>
+                <source type="image/webp" data-srcset="img/timing/01.webp" srcset="img/lazy/1x1.webp" />
+                <img data-src="img/timing/01.png" src="img/lazy/1x1.png" alt="image" />
+              </picture>
+            </div>
+            <div class="timing__box-heading"><span>Консультация</span> по любым вопросам</div>
+            <button type="button" data-path="popup" class="timing__box-button popup-btn">
+              <svg>
+                <use href="#timing-consult-btn" />
+              </svg>
+              <span>Заказать</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process _anchor">
+  <div class="process__container _container">
+    <h2 id="process" class="process__title title"><span>КАК МЫ</span>РАБОТАЕМ</h2>
+    <div class="process__stage-one">
+      <h3 class="process__heading">1 ЭТАП <span>Бурение скважины на воду</span></h3>
+      <div class="process__row-1">
+        <div class="process__item-container">
+          <div class="process__item process__item--1">
+            <div class="process__box">
+              <div class="process__box-desc">Звоните нам по тел: <a href="tel:+73952606060">+7 3952 60-60-60</a> <span>или оставляйте заявку на нашем сайте:</span></div>
+              <button type="button" data-path="popup" class="process__box-button btn popup-btn"><span>Оставить заявку</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container">
+          <div class="process__item process__item--2">
+            <div class="process__box">
+              <div class="process__box-desc">Специалист бесплатно выезжает к вам на участок для изучения деталей бурения:</div>
+              <ul class="process__box-list">
+                <li>Обследуются подъездные пути</li>
+                <li>Проводится анализ рельефа и грунта</li>
+                <li>Определяется оптимальное место для скважины</li>
+                <li>Определяется доступность электроэнергии</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container process__item-container--3">
+          <div class="process__item process__item--3">
+            <div class="process__box">
+              <div class="process__box-desc">Заключается договор с гарантийными обязательствами</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="process__row-2">
+        <div class="process__item-container process__item-container--4">
+          <div class="process__item process__item--4">
+            <div class="process__box">
+              <div class="process__box-desc">
+                После окончания бурения, осуществляем компрессорную продувку скважины, благодаря чему вымываем весь шлак и увеличиваем срок службы источника
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container">
+          <div class="process__item process__item--5">
+            <div class="process__box">
+              <div class="process__box-desc">Укрываем строения от брызг</div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container process__item-container--6">
+          <div class="process__item process__item--6">
+            <div class="process__box">
+              <div class="process__box-desc">В строго оговоренное время техника заезжает на ваш участок</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="process__row-3">
+        <div class="process__item-container process__item-container--7">
+          <div class="process__item process__item--7">
+            <div class="process__box">
+              <ul class="process__box-desc process__box-desc--indents">
+                <li>В вашем присутствии замеряем глубину скважины.</li>
+                <li>Проводим контроль качества воды и химический анализ.</li>
+                <li>Сдаём скважину только с прозрачной водой</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container">
+          <div class="process__item process__item--8">
+            <div class="process__box">
+              <div class="process__box-desc">Подписываем акт об окончании работ, выдаём гарантийный талон и паспорт скважины</div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container process__item-container--9">
+          <div class="process__item process__item--9">
+            <div class="process__box">
+              <div class="process__box-desc">Вы оплачиваете работу</div>
+              <span>Завершение 1 этапа</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="process__stage-two">
+      <h3 class="process__heading process__heading--stage-two">2 ЭТАП <span>Обустройство скважины</span></h3>
+      <div class="process__row-1">
+        <div class="process__item-container">
+          <div class="process__item process__item--1-stage-two">
+            <div class="process__box">
+              <div class="process__box-desc">Подбор необходимого оборудования для обустройства скважины</div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container">
+          <div class="process__item process__item--2-stage-two">
+            <div class="process__box">
+              <div class="process__box-desc">Доставка оборудования и материалов на объект монтажа</div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container process__item-container--3 process__item-container--3-stage-two">
+          <div class="process__item process__item--3-stage-two">
+            <div class="process__box">
+              <ul class="process__box-desc process__box-desc--indents">
+                <li>Монтаж кессона либо врезка в трубу скважинного адаптера.</li>
+                <li>Монтаж насосного оборудования</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="process__row-2">
+        <div class="process__item-container process__item-container--4-stage-two">
+          <div class="process__item process__item--4-stage-two">
+            <div class="process__box">
+              <div class="process__box-desc">Запуск системы и тестирование</div>
+              <span>Завершение работы</span>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container">
+          <div class="process__item process__item--5-stage-two">
+            <div class="process__box">
+              <div class="process__box-desc">Установка фильтров для очистки воды</div>
+            </div>
+          </div>
+        </div>
+        <div class="process__item-container process__item-container--6 process__item-container--6-stage-two">
+          <div class="process__item process__item--6-stage-two">
+            <div class="process__box">
+              <div class="process__box-desc">
+                В дом заводится две магистрали, одна водоподающая, вторая для подводки электрокабеля от насоса, при необходимости устанавливается греющий кабель
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      </main>
+
+      <footer class="contacts _anchor">
+  <div class="contacts__wrapper">
+    <div class="contacts__leaflet-container maps">
+      <div id="map-contacts" class="maps__map">
+        <div class="maps__preloader-image _contacts-preloader-img _img _lazyload">
+          <span class="maps__text maps__text--contacts">Нажмите на карту для взаимодействия</span>
+          <picture>
+            <source type="image/webp" data-srcset="img/map-contacts/pl-contacts.webp" srcset="img/lazy/1x1.webp" />
+            <img data-src="img/map-contacts/pl-contacts.jpg" src="img/lazy/1x1.png" alt="image" />
+          </picture>
+        </div>
+      </div>
+    </div>
+    <div class="contacts__container _container">
+      <div class="contacts__inner">
+        <div class="contacts__logo _logo _lazyload">
+          <img data-src="img/logo/logo-w.svg" src="img/lazy/1x1.png" alt="image" />
+        </div>
+        <div id="contacts" class="contacts__body">
+          <div class="contacts__box">
+            <div class="contacts__box-label">Офис</div>
+            <div class="contacts__box-address">г. Иркутск, ул. Байкальская, 203</div>
+          </div>
+          <div class="contacts__box">
+            <div class="contacts__box-label">Телефон</div>
+            <a href="tel:+73952799343" class="contacts__box-phone">+7 3952 799-343</a>
+          </div>
+          <div class="contacts__box">
+            <div class="contacts__box-label">Напишите нам</div>
+            <div class="contacts__social social">
+              <ul class="social__list social__list--contacts">
+                <li class="social__item social__item--contacts">
+                  <span class="social__item-decor social__item-decor--1"></span>
+                  <a href="#" target="_blank" rel="noopener" class="social__link social__link--1">Viber</a>
+                </li>
+                <li class="social__item social__item--contacts">
+                  <span class="social__item-decor social__item-decor--2"></span>
+                  <a href="#" target="_blank" rel="noopener" class="social__link social__link--2">Whatsapp</a>
+                </li>
+                <li class="social__item social__item--contacts">
+                  <span class="social__item-decor social__item-decor--3"></span>
+                  <a href="#" target="_blank" rel="noopener" class="social__link social__link--3">Telegram</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="contacts__box">
+            <div class="contacts__box-label">Почта</div>
+            <a href="mailto:info@geo-gart.com" class="contacts__box-email">info@geo-gart.com</a>
+          </div>
+        </div>
+        <div class="contacts__development">
+          <span>Разработка и продвижение</span>
+          <div class="contacts__development-logo _logo _lazyload">
+            <img data-src="img/logo/logo-megamir.svg" src="img/lazy/1x1.png" alt="image" />
+          </div>
+        </div>
+        <span class="contacts__copy">ООО «ГЕО-ГАРТ», 2021. Все права защищены.</span>
+      </div>
+      <div class="contacts__box-button-up">
+        <button type="button" class="contacts__button-up"><span>Наверх</span></button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+
+    <div id="popup" class="popup" aria-hidden="true">
+  <div class="popup__container">
+    <div id="content-consult" class="popup__content" role="dialog" aria-modal="true" tabindex="-1">
+      <div class="popup__close-box">
+        <button class="popup__close close-popup" type="button" aria-label="Закрыть"><span></span></button>
+      </div>
+      <h2 class="popup__title">Заказ консультации</h2>
+      <form id="form-consult" class="popup__form form-popup">
+        <div class="form-popup__item form-popup__item--name placeholder">
+          <input class="form-popup__input input _required _name" id="popupFormName" type="text" maxlength="24" autocomplete="off" name="username" placeholder=" " />
+          <label for="popupFormName">Имя</label>
+          <span id="name-input-error"></span>
+        </div>
+
+        <div class="form-popup__item placeholder">
+          <input class="form-popup__input input _required _phone" id="popupFormPhone" type="tel" autocomplete="off" name="userphone" placeholder=" " />
+          <label for="popupFormPhone">Номер телефона</label>
+          <span id="phone-input-error"></span>
+        </div>
+
+        <button class="form-popup__button btn" type="submit"><span>Заказать консультацию</span></button>
+
+        <div class="form-popup__desc">
+          <p>Наши специалисты ответят на любые ваши вопросы</p>
+          <p>Консультация и выезд специалиста абсолютно бесплатны</p>
+        </div>
+      </form>
+      <div id="success-consult" class="popup__success success">
+        <div class="success__body">
+          <div class="success__image">
+            <svg>
+              <use href="#popup-success-img" />
+            </svg>
+          </div>
+          <div class="success__heading">Уважаемый <span class="success__name">Константин</span></div>
+          <div class="success__desc">
+            <p>Мы приняли вашу заявку, наш специалист свяжется с вами в ближайшее время по номеру</p>
+            <span class="success__phone">+7 950 105-55-22</span>
+          </div>
+          <button class="success__button btn close-popup" type="button" disabled>Закрыть окно</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.10.1/minified.min.js" nomodule defer></script>
+<script src="https://cdn.jsdelivr.net/npm/babel-regenerator-runtime@6.5.0/runtime.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js" defer></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"
+  integrity="sha512-4fy9Fm99qJL/vUTSurfLmCPnd9F8zoYtTTW8qxIvWwYmF9olyqtQuDLk+wE6k7bBgtMDm99+3GaD+IwZVpcbgQ=="
+  crossorigin=""
+  referrerpolicy="no-referrer"
+  defer
+></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"
+  integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA=="
+  crossorigin=""
+  referrerpolicy="no-referrer"
+  defer
+></script>
+<script src="resources/leaflet/leaflet.markercluster.min.js" defer></script>
+
+<script src="js/main.min.js"></script>
+
+<script src="resources/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  /** =============================== Слайдеры ==================================== */
+  let mainImageSwiper;
+
+  function initSlider() {
+    const breakpoint = window.matchMedia('(max-width: 819.98px)');
+
+    if (breakpoint.matches && mainImageSwiper === undefined) {
+      mainImageSwiper = new Swiper('.swiper-container', {
+        navigation: {
+          prevEl: '.swiper-button-prev',
+          nextEl: '.swiper-button-next',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        effect: 'slide',
+        speed: 500,
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        initialSlide: 1,
+        watchOverflow: true,
+        centeredSlides: true,
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+      });
+    } else if (!breakpoint.matches && mainImageSwiper !== undefined) {
+      mainImageSwiper.forEach((slider) => slider.destroy());
+      mainImageSwiper = undefined;
+
+      document.querySelectorAll('.swiper-wrapper').forEach((el) => el.removeAttribute('style'));
+      document.querySelectorAll('.swiper-slide').forEach((el) => el.removeAttribute('style'));
+    }
+  }
+  initSlider();
+
+  window.addEventListener('resize', initSlider);
+
+  /** =============================== Ассинхронная подгрузка сторонних CSS ==================================== */
+  function asyncCSSextended(href, integrity) {
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = href;
+    css.integrity = integrity;
+    css.setAttribute('crossorigin', '');
+    css.setAttribute('referrerpolicy', 'no-referrer');
+    document.head.appendChild(css);
+  }
+  function asyncCSS(href) {
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = href;
+    document.head.appendChild(css);
+  }
+  asyncCSSextended(
+    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css',
+    'sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA=='
+  );
+  asyncCSS('resources/leaflet/MarkerCluster.css');
+  asyncCSS('resources/leaflet/MarkerCluster.Default.css');
+</script>
+
+  </body>
+</html>
